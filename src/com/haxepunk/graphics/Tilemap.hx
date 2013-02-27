@@ -478,26 +478,26 @@ class Tilemap extends Canvas
 	/**
 	 * The tile width.
 	 */
-	public var tileWidth(getTileWidth, never):Int;
-	private function getTileWidth():Int { return Std.int(_tile.width); }
+	public var tileWidth(get, never):Int;
+	private function get_tileWidth():Int { return Std.int(_tile.width); }
 
 	/**
 	 * The tile height.
 	 */
-	public var tileHeight(getTileHeight, never):Int;
-	private function getTileHeight():Int { return Std.int(_tile.height); }
+	public var tileHeight(get, never):Int;
+	private function get_tileHeight():Int { return Std.int(_tile.height); }
 
 	/**
 	 * How many columns the tilemap has.
 	 */
-	public var columns(getColumns, null):Int;
-	private function getColumns():Int { return _columns; }
+	public var columns(get, null):Int;
+	private function get_columns():Int { return _columns; }
 
 	/**
 	 * How many rows the tilemap has.
 	 */
-	public var rows(getRows, null):Int;
-	private function getRows():Int { return _rows; }
+	public var rows(get, null):Int;
+	private function get_rows():Int { return _rows; }
 
 	// Tilemap information.
 	private var _map:Array2D;

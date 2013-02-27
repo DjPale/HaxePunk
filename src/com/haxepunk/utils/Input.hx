@@ -24,8 +24,8 @@ class Input
 	/**
 	 * If the mouse wheel was moved this frame, this was the delta.
 	 */
-	public static var mouseWheelDelta(getMouseWheelDelta, never):Int;
-	public static function getMouseWheelDelta():Int
+	public static var mouseWheelDelta(get, never):Int;
+	public static function get_mouseWheelDelta():Int
 	{
 		if (mouseWheel)
 		{
@@ -38,8 +38,8 @@ class Input
 	/**
 	 * X position of the mouse on the screen.
 	 */
-	public static var mouseX(getMouseX, never):Int;
-	private static function getMouseX():Int
+	public static var mouseX(get, never):Int;
+	private static function get_mouseX():Int
 	{
 		return HXP.screen.mouseX;
 	}
@@ -47,8 +47,8 @@ class Input
 	/**
 	 * Y position of the mouse on the screen.
 	 */
-	public static var mouseY(getMouseY, never):Int;
-	private static function getMouseY():Int
+	public static var mouseY(get, never):Int;
+	private static function get_mouseY():Int
 	{
 		return HXP.screen.mouseY;
 	}
@@ -56,8 +56,8 @@ class Input
 	/**
 	 * The absolute mouse x position on the screen (unscaled).
 	 */
-	public static var mouseFlashX(getMouseFlashX, never):Int;
-	private static function getMouseFlashX():Int
+	public static var mouseFlashX(get, never):Int;
+	private static function get_mouseFlashX():Int
 	{
 		return Std.int(HXP.stage.mouseX);
 	}
@@ -65,8 +65,8 @@ class Input
 	/**
 	 * The absolute mouse y position on the screen (unscaled).
 	 */
-	public static var mouseFlashY(getMouseFlashY, never):Int;
-	private static function getMouseFlashY():Int
+	public static var mouseFlashY(get, never):Int;
+	private static function get_mouseFlashY():Int
 	{
 		return Std.int(HXP.stage.mouseY);
 	}
@@ -174,8 +174,8 @@ class Input
 		return joy;
 	}
 
-	public static var joysticks(getJoysticks, never):Int;
-	private static function getJoysticks():Int
+	public static var joysticks(get, never):Int;
+	private static function get_joysticks():Int
 	{
 		var count:Int = 0;
 		for (joystick in _joysticks)
@@ -328,13 +328,13 @@ class Input
 	private static inline var kKeyStringMax = 100;
 
 	private static var _enabled:Bool = false;
-	private static var _joysticks:IntHash<Joystick> = new IntHash<Joystick>();
+	private static var _joysticks:Map<Int, Joystick> = new Map<Int, Joystick>();
 	private static var _key:Array<Bool> = new Array<Bool>();
 	private static var _keyNum:Int = 0;
 	private static var _press:Array<Int> = new Array<Int>();
 	private static var _pressNum:Int = 0;
 	private static var _release:Array<Int> = new Array<Int>();
 	private static var _releaseNum:Int = 0;
-	private static var _control:Hash<Array<Int>> = new Hash<Array<Int>>();
+	private static var _control:Map<String, Array<Int>> = new Map<String, Array<Int>>();
 	private static var _mouseWheelDelta:Int = 0;
 }

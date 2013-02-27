@@ -13,7 +13,7 @@ class TextureAtlas extends Atlas
 		if (Std.is(source, BitmapData)) bd = source;
 		else bd = HXP.getBitmap(source);
 
-		_regions = new Hash<AtlasRegion>();
+		_regions = new Map<String,AtlasRegion>();
 
 		super(bd);
 	}
@@ -67,5 +67,5 @@ class TextureAtlas extends Atlas
 		return region;
 	}
 
-	private var _regions:Hash<AtlasRegion>;
+	private var _regions:Map<String,AtlasRegion>;
 }

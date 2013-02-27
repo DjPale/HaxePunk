@@ -12,17 +12,17 @@ enum JoyButtonState
 
 class Joystick
 {
-	public var buttons:IntHash<JoyButtonState>;
+	public var buttons:Map<Int, JoyButtonState>;
 	public var axis(null, default):Array<Float>;
 	public var hat:Point;
 	public var ball:Point;
-	public var connected(get_connected, set_connected):Bool;
+	public var connected(get, set):Bool;
 
 	public static inline var deadZone:Float = 0.15; //joystick deadzone
 
 	public function new()
 	{
-		buttons = new IntHash<JoyButtonState>();
+		buttons = new Map<Int, JoyButtonState>();
 		ball = new Point(0, 0);
 		axis = new Array<Float>();
 		hat = new Point(0, 0);

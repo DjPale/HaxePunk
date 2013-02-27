@@ -52,11 +52,7 @@ class HXP
 	/**
 	 * Flash equivalent: int.MAX_VALUE
 	 */
-#if neko
-	public static inline var INT_MAX_VALUE = 1073741823;
-#else
 	public static inline var INT_MAX_VALUE = 2147483646;
-#end
 
 	/**
 	 * The color black defined for neko (BitmapInt32) or flash (Int)
@@ -170,9 +166,9 @@ class HXP
 	 * The currently active World object. When you set this, the World is flagged
 	 * to switch, but won't actually do so until the end of the current frame.
 	 */
-	public static var world(getWorld, setWorld):World;
-	private static inline function getWorld():World { return _world; }
-	private static function setWorld(value:World):World
+	public static var world(get, set):World;
+	private static inline function get_world():World { return _world; }
+	private static function set_world(value:World):World
 	{
 		if (_world == value) return value;
 		_goto = value;
@@ -241,9 +237,9 @@ class HXP
 	/**
 	 * Global volume factor for all sounds, a value from 0 to 1.
 	 */
-	public static var volume(getVolume, setVolume):Float;
-	private static inline function getVolume():Float { return _volume; }
-	private static function setVolume(value:Float):Float
+	public static var volume(get, set):Float;
+	private static inline function get_volume():Float { return _volume; }
+	private static function set_volume(value:Float):Float
 	{
 		if (value < 0) value = 0;
 		if (_volume == value) return value;
@@ -257,9 +253,9 @@ class HXP
 	/**
 	 * Global panning factor for all sounds, a value from -1 to 1.
 	 */
-	public static var pan(getPan, setPan):Float;
-	private static inline function getPan():Float { return _pan; }
-	private static function setPan(value:Float):Float
+	public static var pan(get, set):Float;
+	private static inline function get_pan():Float { return _pan; }
+	private static function set_pan(value:Float):Float
 	{
 		if (value < -1) value = -1;
 		if (value > 1) value = 1;
@@ -599,8 +595,8 @@ class HXP
 	/**
 	 * The random seed used by FP's random functions.
 	 */
-	public static var randomSeed(default, setRandomSeed):Int;
-	private static inline function setRandomSeed(value:Int):Int
+	public static var randomSeed(default, set):Int;
+	private static inline function set_randomSeed(value:Int):Int
 	{
 		_seed = Std.int(clamp(value, 1.0, INT_MAX_VALUE));
 		randomSeed = _seed;
@@ -618,8 +614,8 @@ class HXP
 	/**
 	 * A pseudo-random Float produced using FP's random seed, where 0 <= Float < 1.
 	 */
-	public static var random(getRandom, null):Float;
-	private static inline function getRandom():Float
+	public static var random(get, never):Float;
+	private static inline function get_random():Float
 	{
 		_seed = Std.int((_seed * 16807.0) % INT_MAX_VALUE);
 		return _seed / INT_MAX_VALUE;
@@ -829,8 +825,8 @@ class HXP
 	/**
 	 * The global Console object.
 	 */
-	public static var console(getConsole, never):Console;
-	private static inline function getConsole():Console
+	public static var console(get, never):Console;
+	private static inline function get_console():Console
 	{
 		if (_console == null) _console = new Console();
 		return _console;
@@ -977,8 +973,8 @@ class HXP
 		}
 	}
 
-	public static var time(null, setTime):Float;
-	private static inline function setTime(value:Float):Float {
+	public static var time(null, set):Float;
+	private static inline function set_time(value:Float):Float {
 		_time = value;
 		return _time;
 	}

@@ -131,8 +131,8 @@ class Text extends Image
 	/**
 	 * Text string.
 	 */
-	public var text(default, setText):String;
-	private function setText(value:String):String
+	public var text(default, set_text):String;
+	private function set_text(value:String):String
 	{
 		if (text == value) return value;
 		_field.text = text = value;
@@ -143,8 +143,8 @@ class Text extends Image
 	/**
 	 * Font family.
 	 */
-	public var font(default, setFont):String;
-	private function setFont(value:String):String
+	public var font(default, set_font):String;
+	private function set_font(value:String):String
 	{
 		if (font == value) return value;
 #if nme
@@ -158,8 +158,8 @@ class Text extends Image
 	/**
 	 * Font size.
 	 */
-	public var size(default, setSize):Int;
-	private function setSize(value:Int):Int
+	public var size(default, set_size):Int;
+	private function set_size(value:Int):Int
 	{
 		if (size == value) return value;
 		_form.size = size = value;

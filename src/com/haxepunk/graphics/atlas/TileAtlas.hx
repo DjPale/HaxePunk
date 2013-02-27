@@ -11,7 +11,7 @@ class TileAtlas extends Atlas
 		if (Std.is(source, BitmapData)) bd = source;
 		else bd = HXP.getBitmap(source);
 
-		_regions = new IntHash<AtlasRegion>();
+		_regions = new Map<Int,AtlasRegion>();
 		super(bd);
 
 		prepareTiles(bd.width, bd.height, tileWidth, tileHeight);
@@ -46,5 +46,5 @@ class TileAtlas extends Atlas
 		}
 	}
 
-	private var _regions:IntHash<AtlasRegion>;
+	private var _regions:Map<Int,AtlasRegion>;
 }
