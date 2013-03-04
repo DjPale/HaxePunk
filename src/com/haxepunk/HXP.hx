@@ -1021,5 +1021,5 @@ class HXP
 	public static var rect:Rectangle = new Rectangle();
 	public static var matrix:Matrix = new Matrix();
 	public static var sprite:Sprite = new Sprite();
-	public static var entity:Entity;
+	public static var entity:Entity = new Entity();
 }

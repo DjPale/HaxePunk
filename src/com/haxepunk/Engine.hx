@@ -76,7 +76,6 @@ class Engine extends Sprite
 		if (HXP.randomSeed == 0) HXP.randomizeSeed();
 #end
 
-		HXP.entity = new Entity();
 		HXP.time = Lib.getTimer();
 
 		paused = false;
