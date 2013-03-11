@@ -27,8 +27,10 @@ class Tilemap extends Canvas
 	 * @param	height			Height of the tilemap, in pixels.
 	 * @param	tileWidth		Tile width.
 	 * @param	tileHeight		Tile height.
+	 * @param	tileSpacing		Tile spacing
+	 * @param	tileMargin		Tile margin
 	 */
-	public function new(tileset:Dynamic, width:Int, height:Int, tileWidth:Int, tileHeight:Int)
+	public function new(tileset:Dynamic, width:Int, height:Int, tileWidth:Int, tileHeight:Int, ?tileSpacing:Int = 0, ?tileMargin:Int = 0)
 	{
 		_rect = HXP.rect;
 
@@ -52,6 +54,8 @@ class Tilemap extends Canvas
 
 		// initialize map
 		_tile = new Rectangle(0, 0, tileWidth, tileHeight);
+		_tileSpacing = tileSpacing;
+		_tileMargin = tileMargin;
 		_map = new Array2D();
 		for (y in 0..._rows)
 		{
@@ -94,13 +98,13 @@ class Tilemap extends Canvas
 
 		if (_blit)
 		{
-			_setColumns = Std.int(_set.width / tileWidth);
-			_setRows = Std.int(_set.height / tileHeight);
+			_setColumns = Std.int(_set.width / (tileWidth + tileSpacing));
+			_setRows = Std.int(_set.height / (tileHeight + tileSpacing));
 		}
 		else
 		{
-			_setColumns = Std.int(_atlas.width / tileWidth);
-			_setRows = Std.int(_atlas.height / tileHeight);
+			_setColumns = Std.int(_atlas.width / (tileWidth + tileSpacing));
+			_setRows = Std.int(_atlas.height / (tileHeight + tileSpacing));
 		}
 		_setCount = _setColumns * _setRows;
 	}
@@ -121,8 +125,8 @@ class Tilemap extends Canvas
 		index %= _setCount;
 		column %= _columns;
 		row %= _rows;
-		_tile.x = (index % _setColumns) * _tile.width;
-		_tile.y = Std.int(index / _setColumns) * _tile.height;
+		_tile.x = (index % _setColumns) * (_tile.width + _tileSpacing) + _tileMargin;
+		_tile.y = Std.int(index / _setColumns) * (_tile.height + _tileSpacing) + _tileMargin;
 		_map[row][column] = index;
 		if (_blit) draw(Std.int(column * _tile.width), Std.int(row * _tile.height), _set, _tile);
 	}
@@ -511,4 +515,6 @@ class Tilemap extends Canvas
 	private var _setRows:Int;
 	private var _setCount:Int;
 	private var _tile:Rectangle;
+	private var _tileSpacing:Int;
+	private var _tileMargin:Int;
 }
