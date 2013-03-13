@@ -30,6 +30,10 @@ class Spritemap extends Image
 	 * Animation speed factor, alter this to speed up/slow down all animations.
 	 */
 	public var rate:Float;
+	
+	public var _spacing:Int;
+	
+	public var _margin:Int;
 
 	/**
 	 * Constructor.
@@ -38,13 +42,16 @@ class Spritemap extends Image
 	 * @param	frameHeight		Frame height.
 	 * @param	callback		Optional callback function for animation end.
 	 */
-	public function new(source:Dynamic, frameWidth:Int = 0, frameHeight:Int = 0, cbFunc:CallbackFunction = null, name:String = "")
+	public function new(source:Dynamic, frameWidth:Int = 0, frameHeight:Int = 0, ?spacing:Int = 0, ?margin:Int = 0, cbFunc:CallbackFunction = null, name:String = "")
 	{
 		complete = true;
 		rate = 1;
 		_anims = new Hash<Animation>();
 		_timer = _frame = 0;
-
+		
+		_spacing = spacing;
+		_margin = margin;
+		
 		_rect = new Rectangle(0, 0, frameWidth, frameHeight);
 		if (Std.is(source, TileAtlas))
 		{
@@ -74,7 +81,7 @@ class Spritemap extends Image
 		if (frameWidth == 0) _rect.width = _width;
 		if (frameHeight == 0) _rect.height = _height;
 
-		_columns = Math.ceil(_width / _rect.width);
+		_columns = Math.ceil(_width / (_rect.width + _spacing));
 		_rows = Math.ceil(_height / _rect.height);
 		_frameCount = _columns * _rows;
 		callbackFunc = cbFunc;
@@ -91,8 +98,8 @@ class Spritemap extends Image
 		if (_blit)
 		{
 			// get position of the current frame
-			_rect.x = _rect.width * _frame;
-			_rect.y = Std.int(_rect.x / _width) * _rect.height;
+			_rect.x = (_rect.width + _spacing) * _frame + _margin;
+			_rect.y = Std.int(_rect.x / _width) * (_rect.height + _spacing) + _margin;
 			_rect.x = _rect.x % _width;
 
 			if (_flipped) _rect.x = (_width - _rect.width) - _rect.x;
