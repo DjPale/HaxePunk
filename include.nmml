@@ -4,4 +4,6 @@
 
 	<assets path="assets/graphics" rename="gfx" include="*.png" />
 	<assets path="assets/font" rename="font" include="*.ttf" />
+	
+	<source path="src" />
 </project>

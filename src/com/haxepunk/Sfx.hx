@@ -5,7 +5,7 @@ import nme.media.Sound;
 import nme.media.SoundChannel;
 import nme.media.SoundTransform;
 
-typedef AudioCompleteCallback = Void -> Void;
+typedef AudioCompleteCallback = Sfx -> Void;
 
 /**
  * Sound effect object used to play embedded sounds.
@@ -109,7 +109,7 @@ class Sfx
 		if (_looping) loop(_volume, _pan);
 		else stop();
 		_position = 0;
-		if (complete != null) complete();
+		if (complete != null) complete(this);
 	}
 
 	/**
