@@ -22,6 +22,9 @@ typedef TextOptions = {
 	@:optional var resizable:Bool;
 	@:optional var color:Int;
 	@:optional var leading:Int;
+#if nme
+	@:optional var outline:Bool;
+#end
 };
 
 /**
@@ -72,6 +75,17 @@ class Text extends Image
 		_field.defaultTextFormat = _form;
 		_field.text = text;
 
+#if nme
+		if (options.outline)
+		{
+			var filter = new nme.filters.GlowFilter(0);
+			filter.blurX = filter.blurY = 2;
+			filter.quality = nme.filters.BitmapFilterQuality.HIGH;
+			filter.strength = 100;
+			_field.filters = [filter];
+		}
+#end
+		
 		resizable = options.resizable;
 
 		if (width == 0) width = Std.int(_field.textWidth + 4);
